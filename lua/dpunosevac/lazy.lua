@@ -204,6 +204,11 @@ local plugins = {
 		}
 	},
 	"mbbill/undotree",
+	{
+		'windwp/nvim-autopairs',
+		event = "InsertEnter",
+		opts = {}
+	}
 }
 
 require("lazy").setup(plugins, {})
