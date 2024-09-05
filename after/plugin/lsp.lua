@@ -72,7 +72,6 @@ require('mason-lspconfig').setup()
 
 -- Enable the following language servers
 local servers = {
-  html = {},
   pyright = {},
   rust_analyzer = {},
   lua_ls = {
