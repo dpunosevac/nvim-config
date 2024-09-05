@@ -65,7 +65,11 @@ local plugins = {
 	},
 
 	-- Useful plugin to show you pending keybinds.
-	{ 'folke/which-key.nvim', opts = {} },
+	{
+		'folke/which-key.nvim',
+		event = "VeryLazy",
+		opts = {}
+	},
 	{
 		-- Adds git related signs to the gutter, as well as utilities for managing changes
 		'lewis6991/gitsigns.nvim',
@@ -208,6 +212,16 @@ local plugins = {
 		'windwp/nvim-autopairs',
 		event = "InsertEnter",
 		opts = {}
+	},
+	"github/copilot.vim",
+	{
+		'echasnovski/mini.icons',
+		version = false
+	},
+	'nvim-tree/nvim-web-devicons',
+	{
+		'stevearc/conform.nvim',
+		opts = {},
 	}
 }
 
