@@ -168,12 +168,12 @@ M.lspconfig = {
       "LSP definition type",
     },
 
-    ["<leader>ra"] = {
-      function()
-        require("nvchad.renamer").open()
-      end,
-      "LSP rename",
-    },
+    -- ["<leader>ra"] = {
+    --   function()
+    --     require("nvchad.renamer").open()
+    --   end,
+    --   "LSP rename",
+    -- },
 
     ["<leader>ca"] = {
       function()
