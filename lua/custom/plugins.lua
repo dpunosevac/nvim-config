@@ -59,12 +59,18 @@ local plugins = {
     },
     {
         "tpope/vim-fugitive",
-        init = function()
+        event = "VeryLazy",
+        dependencies = {
+            "tpope/vim-rhubarb",
+            "tpope/vim-obsession",
+            "tpope/vim-unimpaired",
+        },
+        config = function()
             require("core.utils").load_mappings("fugitive")
         end
-    },
-    {
-        'tpope/vim-rhubarb',
+        -- init = function()
+        --     require("core.utils").load_mappings("fugitive")
+        -- end
     },
     {
         -- Detect tabstop and shiftwidth automatically

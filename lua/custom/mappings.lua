@@ -95,14 +95,22 @@ M.undotree = {
     }
 }
 
--- M.fugitive = {
---     plugin = true,
---     n = {
---         ["<leader>gs"] = {
---             "<cmd> Git <CR>",
---             "Git Status "
---         }
---     }
--- }
+M.fugitive = {
+    plugin = true,
+    n = {
+        ["<leader>gs"] = {
+            "<cmd> Git <CR>",
+            "Git Status "
+        },
+        ["<leader>gb"] = {
+            "<cmd> Git blame <CR>",
+            "Git Blame"
+        },
+        ["<leader>dv"] = {
+            "<cmd> Gvdiff <CR>",
+            "Git Diff"
+        }
+    }
+}
 
 return M
