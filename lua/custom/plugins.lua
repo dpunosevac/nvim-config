@@ -57,5 +57,40 @@ local plugins = {
             vim.cmd [[silent! GoInstallDeps]]
         end,
     },
+    {
+        "tpope/vim-fugitive",
+        init = function()
+            require("core.utils").load_mappings("fugitive")
+        end
+    },
+    {
+        'tpope/vim-rhubarb',
+    },
+    {
+        -- Detect tabstop and shiftwidth automatically
+        'tpope/vim-sleuth',
+    },
+    {
+        "mbbill/undotree",
+        cmd = "UndoTreeToggle",
+        init = function()
+            require("core.utils").load_mappings("undotree")
+        end
+    },
+    {
+        -- Add indentation guides even on blank lines
+        'lukas-reineke/indent-blankline.nvim',
+        -- Enable `lukas-reineke/indent-blankline.nvim`
+        -- See `:help ibl`
+        main = 'ibl',
+        commit = "29be0919b91fb59eca9e90690d76014233392bef",
+        opts = {},
+        config = function()
+            require "custom.configs.blanklines"
+        end
+    },
+    -- {
+    --     "github/copilot.vim",
+    -- }
 }
 return plugins
