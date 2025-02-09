@@ -424,33 +424,19 @@ M.gitsigns = {
         },
 
         -- Actions
-        ["<leader>rh"] = {
+        ["<leader>gr"] = {
             function()
                 require("gitsigns").reset_hunk()
             end,
             "Reset hunk",
         },
 
-        ["<leader>ph"] = {
+        ["<leader>gp"] = {
             function()
                 require("gitsigns").preview_hunk()
             end,
             "Preview hunk",
-        },
-
-        ["<leader>gb"] = {
-            function()
-                package.loaded.gitsigns.blame_line()
-            end,
-            "Blame line",
-        },
-
-        ["<leader>td"] = {
-            function()
-                require("gitsigns").toggle_deleted()
-            end,
-            "Toggle deleted",
-        },
+        }
     },
 }
 
