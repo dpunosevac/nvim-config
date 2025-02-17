@@ -17,7 +17,7 @@ conform.setup({
         go = { "gofumpt", "goimports-reviser", "golines" }
     },
     formatters = {
-        ["goimports-reviser"] = { prepend_args = { "-rm-unused" } },
+        -- ["goimports-reviser"] = { prepend_args = { "-rm-unused" } }, Once removed import by it cannot be imported back
         golines = { prepend_args = { "--max-len=100" } },
     },
     format_on_save = {
