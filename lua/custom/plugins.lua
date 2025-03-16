@@ -6,6 +6,9 @@ local plugins = {
                 "gopls",
                 "pyright",
                 "ruff",
+                "eslint-lsp",
+                "prettier",
+                "typescript-language-server"
             },
         },
     },
@@ -98,5 +101,10 @@ local plugins = {
     -- {
     --     "github/copilot.vim",
     -- }
+    {
+        "pmizio/typescript-tools.nvim",
+        dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+        opts = {},
+    }
 }
 return plugins
