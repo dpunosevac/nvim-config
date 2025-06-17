@@ -14,17 +14,46 @@ M.lspconfig = {
 M.dap = {
     plugin = true,
     n = {
-        ["<leader>dc"] = {
+        ["<F1>"] = {
             function()
                 require("dap").continue()
             end,
             "Debug continue"
         },
-        ["<leader>dt"] = {
+        ["<F2>"] = {
             function()
-                require("dap").terminate()
+                require("dap").step_into()
             end,
-            "Debug Terminate session"
+            "Debug Step Into"
+        },
+        ["<F3>"] = {
+            function()
+                require("dap").step_over()
+            end,
+            "Debug Step Over"
+        },
+        ["<F4>"] = {
+            function()
+                require("dap").step_out()
+            end,
+            "Step Out",
+        },
+        ["<F5>"] = {
+            function()
+                require("dap").step_back()
+            end,
+            "Debug Step Back",
+        },
+        ["<F6>"] = {
+            function()
+                require("dap").run_to_cursor()
+            end
+        },
+        ["<F7>"] = {
+            function()
+                require("dap").restart()
+            end,
+            "Debug Restart"
         },
         ["<leader>db"] = {
             function()
@@ -32,37 +61,31 @@ M.dap = {
             end,
             "Debug Add Breakpoint at line"
         },
-        ["<leader>dB"] = {
-            function()
-                require("dap").clear_breakpoints()
-            end,
-            "Debug clear all Breakpoints"
-        },
-        ["<leader>dso"] = {
-            function()
-                require("dap").step_over()
-            end,
-            "Debug Step Over"
-        },
-        ["<leader>dsi"] = {
-            function()
-                require("dap").step_into()
-            end,
-            "Debug Step Into"
-        },
         ["<leader>de"] = {
             function()
                 require("dapui").eval(nil, { enter = true })
             end,
             "Debug Evaluate current line"
-        }
+        },
+    }
+}
+
+M.dap_python = {
+    plugin = true,
+    n = {
+        ["<leader>dt"] = {
+            function()
+                require("dap-python").test_method()
+            end,
+            "Debug python test"
+        },
     }
 }
 
 M.dap_go = {
     plugin = true,
     n = {
-        ["<leader>dgt"] = {
+        ["<leader>dt"] = {
             function()
                 require("dap-go").debug_test()
             end,

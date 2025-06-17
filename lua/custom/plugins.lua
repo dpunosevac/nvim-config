@@ -23,7 +23,17 @@ local plugins = {
             require("core.utils").load_mappings("dap")
         end,
         config = function()
-            require "custom.configs.debbug"
+            require "custom.configs.debug"
+        end
+    },
+    {
+        "mfussenegger/nvim-dap-python",
+        ft = "python",
+        dependencies = "mfussenegger/nvim-dap",
+        config = function()
+            require('dap-python').test_runner = 'pytest'
+            require("dap-python").setup("python")
+            require("core.utils").load_mappings("dap_python")
         end
     },
     {
@@ -34,6 +44,13 @@ local plugins = {
             require("dap-go").setup(opts)
             require("core.utils").load_mappings("dap_go")
         end
+    },
+    {
+        "nvim-telescope/telescope-dap.nvim",
+        dependencies = { "nvim-telescope/telescope.nvim" },
+        config = function()
+            require('telescope').load_extension('dap')
+        end,
     },
     {
         "neovim/nvim-lspconfig",
