@@ -23,6 +23,12 @@ M.telescope = {
             end,
             "Search in Open files"
         },
+        ["<leader>sh"] = {
+            function()
+                require("custom.configs.telescope").live_grep_hidden()
+            end,
+            "Search files (including Hidden)"
+        }
         -- ["<leader>sh"] = { "<cmd> ", "Search Hidden files"}
     }
 }
