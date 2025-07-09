@@ -11,6 +11,22 @@ M.lspconfig = {
     }
 }
 
+M.telescope = {
+    plugin = true,
+
+    n = {
+        ["<leader>sf"] = { "<cmd> Telescope find_files <CR>", "Search Files" },
+        ["<leader>sw"] = { "<cmd> Telescope grep_string <CR>", "Search current Word" },
+        ["<leader>so"] = {
+            function()
+                require("custom.configs.telescope").live_grep_open_files()
+            end,
+            "Search in Open files"
+        },
+        -- ["<leader>sh"] = { "<cmd> ", "Search Hidden files"}
+    }
+}
+
 M.dap = {
     plugin = true,
     n = {

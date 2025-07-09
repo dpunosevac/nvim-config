@@ -98,7 +98,7 @@ local plugins = {
     },
     {
         "mbbill/undotree",
-        cmd = "UndoTreeToggle",
+        cmd = "UndotreeToggle",
         init = function()
             require("core.utils").load_mappings("undotree")
         end
@@ -115,13 +115,21 @@ local plugins = {
             require "custom.configs.blanklines"
         end
     },
-    -- {
-    --     "github/copilot.vim",
-    -- }
+    {
+        "github/copilot.vim",
+    },
     {
         "pmizio/typescript-tools.nvim",
         dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
         opts = {},
+    },
+    {
+        "iamcco/markdown-preview.nvim",
+        build = "cd app && npm install",
+        ft = { "markdown" },
+        config = function()
+            vim.g.mkdp_auto_start = 0
+        end,
     }
 }
 return plugins
