@@ -1,5 +1,30 @@
 local M = {}
 
+M.global = {
+    n = {
+        ["<leader>d"] = { "\"_d", "Delete without yanking" },
+        ["J"] = { "mzJ`z", "Moves the cursor back to the starting position" },
+        ["<C-d>"] = { "<C-d>zz", "Half page down scroll with recenters the cursor line in the middle of window" },
+        ["n"] = { "nzzzv", "Jumps to the next search match and recenters the cursor" },
+        ["N"] = { "Nzzzv", "Jumps to the previous search match and recenters the cursosr" },
+        ["<leader>fc"] = {
+            function()
+                local filepath = vim.fn.expand('%')
+                vim.fn.setreg('+', filepath) -- write to clippoard
+            end,
+            "Copy full path of currently open file"
+        },
+    },
+    v = {
+        ["<leader>d"] = { "\"_d", "Delete without yanking" },
+        ["J"] = { ":m '>+1<CR>gv=gv", "Moves the selected lines down by one line in visual mode" },
+        ["K"] = { ":m '<-2<CR>gv=gv", "Moves the selected lines up by one line in visual mode" },
+    },
+    x = {
+        ["<leader>p"] = { "\"_dP", "Paste without overwriting registry" }
+    }
+}
+
 M.lspconfig = {
     n = {
         ["<leader>rn"] = {
@@ -29,7 +54,6 @@ M.telescope = {
             end,
             "Search files (including Hidden)"
         }
-        -- ["<leader>sh"] = { "<cmd> ", "Search Hidden files"}
     }
 }
 
