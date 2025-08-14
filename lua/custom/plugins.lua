@@ -88,9 +88,6 @@ local plugins = {
     config = function()
       require("core.utils").load_mappings("fugitive")
     end
-    -- init = function()
-    --     require("core.utils").load_mappings("fugitive")
-    -- end
   },
   {
     -- Detect tabstop and shiftwidth automatically

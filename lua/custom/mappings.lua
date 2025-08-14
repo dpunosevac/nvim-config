@@ -1,185 +1,191 @@
 local M = {}
 
 M.global = {
-    n = {
-        ["<leader>d"] = { "\"_d", "Delete without yanking" },
-        ["J"] = { "mzJ`z", "Moves the cursor back to the starting position" },
-        ["<C-d>"] = { "<C-d>zz", "Half page down scroll with recenters the cursor line in the middle of window" },
-        ["n"] = { "nzzzv", "Jumps to the next search match and recenters the cursor" },
-        ["N"] = { "Nzzzv", "Jumps to the previous search match and recenters the cursosr" },
-        ["<leader>fc"] = {
-            function()
-                local filepath = vim.fn.expand('%')
-                vim.fn.setreg('+', filepath) -- write to clippoard
-            end,
-            "Copy full path of currently open file"
-        },
+  n = {
+    ["<leader>d"] = { "\"_d", "Delete without yanking" },
+    ["J"] = { "mzJ`z", "Moves the cursor back to the starting position" },
+    ["<C-d>"] = { "<C-d>zz", "Half page down scroll with recenters the cursor line in the middle of window" },
+    ["n"] = { "nzzzv", "Jumps to the next search match and recenters the cursor" },
+    ["N"] = { "Nzzzv", "Jumps to the previous search match and recenters the cursosr" },
+    ["<leader>fc"] = {
+      function()
+        local filepath = vim.fn.expand('%')
+        vim.fn.setreg('+', filepath) -- write to clippoard
+      end,
+      "Copy full path of currently open file"
     },
-    v = {
-        ["<leader>d"] = { "\"_d", "Delete without yanking" },
-        ["J"] = { ":m '>+1<CR>gv=gv", "Moves the selected lines down by one line in visual mode" },
-        ["K"] = { ":m '<-2<CR>gv=gv", "Moves the selected lines up by one line in visual mode" },
-    },
-    x = {
-        ["<leader>p"] = { "\"_dP", "Paste without overwriting registry" }
-    }
+  },
+  v = {
+    ["<leader>d"] = { "\"_d", "Delete without yanking" },
+    ["J"] = { ":m '>+1<CR>gv=gv", "Moves the selected lines down by one line in visual mode" },
+    ["K"] = { ":m '<-2<CR>gv=gv", "Moves the selected lines up by one line in visual mode" },
+  },
+  x = {
+    ["<leader>p"] = { "\"_dP", "Paste without overwriting registry" }
+  }
 }
 
 M.lspconfig = {
-    n = {
-        ["<leader>rn"] = {
-            function()
-                require("nvchad.renamer").open()
-            end,
-            "LSP rename",
-        },
-    }
+  n = {
+    ["<leader>rn"] = {
+      function()
+        require("nvchad.renamer").open()
+      end,
+      "LSP rename",
+    },
+  }
 }
 
 M.telescope = {
-    plugin = true,
+  plugin = true,
 
-    n = {
-        ["<leader>sf"] = { "<cmd> Telescope find_files <CR>", "Search Files" },
-        ["<leader>sw"] = { "<cmd> Telescope grep_string <CR>", "Search current Word" },
-        ["<leader>so"] = {
-            function()
-                require("custom.configs.telescope").live_grep_open_files()
-            end,
-            "Search in Open files"
-        },
-        ["<leader>sh"] = {
-            function()
-                require("custom.configs.telescope").live_grep_hidden()
-            end,
-            "Search files (including Hidden)"
-        }
+  n = {
+    ["<leader>sf"] = { "<cmd> Telescope find_files <CR>", "Search Files" },
+    ["<leader>sw"] = { "<cmd> Telescope grep_string <CR>", "Search current Word" },
+    ["<leader>so"] = {
+      function()
+        require("custom.configs.telescope").live_grep_open_files()
+      end,
+      "Search in Open files"
+    },
+    ["<leader>sh"] = {
+      function()
+        require("custom.configs.telescope").live_grep_hidden()
+      end,
+      "Search files (including Hidden)"
     }
+  }
 }
 
 M.dap = {
-    plugin = true,
-    n = {
-        ["<F1>"] = {
-            function()
-                require("dap").continue()
-            end,
-            "Debug continue"
-        },
-        ["<F2>"] = {
-            function()
-                require("dap").step_into()
-            end,
-            "Debug Step Into"
-        },
-        ["<F3>"] = {
-            function()
-                require("dap").step_over()
-            end,
-            "Debug Step Over"
-        },
-        ["<F4>"] = {
-            function()
-                require("dap").step_out()
-            end,
-            "Step Out",
-        },
-        ["<F5>"] = {
-            function()
-                require("dap").step_back()
-            end,
-            "Debug Step Back",
-        },
-        ["<F6>"] = {
-            function()
-                require("dap").run_to_cursor()
-            end
-        },
-        ["<F7>"] = {
-            function()
-                require("dap").restart()
-            end,
-            "Debug Restart"
-        },
-        ["<leader>db"] = {
-            function()
-                require("dap").toggle_breakpoint()
-            end,
-            "Debug Add Breakpoint at line"
-        },
-        ["<leader>de"] = {
-            function()
-                require("dapui").eval(nil, { enter = true })
-            end,
-            "Debug Evaluate current line"
-        },
-    }
+  plugin = true,
+  n = {
+    ["<F1>"] = {
+      function()
+        require("dap").continue()
+      end,
+      "Debug continue"
+    },
+    ["<F2>"] = {
+      function()
+        require("dap").step_into()
+      end,
+      "Debug Step Into"
+    },
+    ["<F3>"] = {
+      function()
+        require("dap").step_over()
+      end,
+      "Debug Step Over"
+    },
+    ["<F4>"] = {
+      function()
+        require("dap").step_out()
+      end,
+      "Step Out",
+    },
+    ["<F5>"] = {
+      function()
+        require("dap").step_back()
+      end,
+      "Debug Step Back",
+    },
+    ["<F6>"] = {
+      function()
+        require("dap").run_to_cursor()
+      end
+    },
+    ["<F7>"] = {
+      function()
+        require("dap").restart()
+      end,
+      "Debug Restart"
+    },
+    ["<leader>db"] = {
+      function()
+        require("dap").toggle_breakpoint()
+      end,
+      "Debug Add Breakpoint at line"
+    },
+    ["<leader>de"] = {
+      function()
+        require("dapui").eval(nil, { enter = true })
+      end,
+      "Debug Evaluate current line"
+    },
+  }
 }
 
 M.dap_python = {
-    plugin = true,
-    n = {
-        ["<leader>dt"] = {
-            function()
-                require("dap-python").test_method()
-            end,
-            "Debug python test"
-        },
-    }
+  plugin = true,
+  n = {
+    ["<leader>dc"] = {
+      function()
+        require("dap-python").test_class()
+      end,
+      "Debug python test class"
+    },
+    ["<leader>dt"] = {
+      function()
+        require("dap-python").test_method()
+      end,
+      "Debug python test"
+    },
+  }
 }
 
 M.dap_go = {
-    plugin = true,
-    n = {
-        ["<leader>dt"] = {
-            function()
-                require("dap-go").debug_test()
-            end,
-            "Debug go test"
-        },
-    }
+  plugin = true,
+  n = {
+    ["<leader>dt"] = {
+      function()
+        require("dap-go").debug_test()
+      end,
+      "Debug go test"
+    },
+  }
 }
 
 M.gopher = {
-    plugin = true,
-    n = {
-        ["<leader>gsj"] = {
-            "<cmd> GoTagAdd json <CR>",
-            "Add json struct tags"
-        },
-        ["<leader>gsy"] = {
-            "<cmd> GoTagAdd yaml <CR>",
-            "Add yaml struct tags"
-        }
+  plugin = true,
+  n = {
+    ["<leader>gsj"] = {
+      "<cmd> GoTagAdd json <CR>",
+      "Add json struct tags"
+    },
+    ["<leader>gsy"] = {
+      "<cmd> GoTagAdd yaml <CR>",
+      "Add yaml struct tags"
     }
+  }
 }
 
 M.undotree = {
-    plugin = true,
-    n = {
-        ["<leader>u"] = {
-            "<cmd> UndotreeToggle <CR>",
-            "Toggle Undotree"
-        }
+  plugin = true,
+  n = {
+    ["<leader>u"] = {
+      "<cmd> UndotreeToggle <CR>",
+      "Toggle Undotree"
     }
+  }
 }
 
 M.fugitive = {
-    plugin = true,
-    n = {
-        ["<leader>gs"] = {
-            "<cmd> Git <CR>",
-            "Git Status "
-        },
-        ["<leader>gb"] = {
-            "<cmd> Git blame <CR>",
-            "Git Blame"
-        },
-        ["<leader>dv"] = {
-            "<cmd> Gvdiff <CR>",
-            "Git Diff"
-        }
-    }
+  plugin = true,
+  n = {
+    ["<leader>gs"] = {
+      "<cmd> Git <CR>",
+      "Git Status "
+    },
+    ["<leader>gb"] = {
+      "<cmd> Git blame <CR>",
+      "Git Blame"
+    },
+    ["<leader>gv"] = {
+      "<cmd> Gvdiffsplit! <CR>",
+      "Git Diff"
+    },
+  }
 }
 
 return M
