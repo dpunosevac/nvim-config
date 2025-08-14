@@ -113,6 +113,12 @@ M.dap = {
       end,
       "Debug Evaluate current line"
     },
+    ["<leader>dx"] = {
+      function()
+        require("dapui").close()
+      end,
+      "Close debugger"
+    },
   }
 }
 
