@@ -132,7 +132,11 @@ local plugins = {
     "nvim-treesitter/nvim-treesitter-context",
     lazy = false,
     config = function()
-      require("treesitter-context").setup {}
+      require("treesitter-context").setup {
+        max_lines = 5,
+        line_numbers = true,
+        separator = "-"
+      }
     end,
   }
 }
