@@ -10,6 +10,19 @@ dap.configurations.python = {
     program = "${file}",
     justMyCode = false, -- if you want to debug library code
   },
+  {
+    type = "python",
+    request = "launch",
+    name = "FastAPI (uvicorn)",
+    module = "uvicorn",
+    args = {
+      "investments.app:app",
+      "--reload",
+      "--host", "127.0.0.1",
+      "--port", "8000",
+    },
+    justMyCode = false,
+  },
 }
 
 dapui.setup()
