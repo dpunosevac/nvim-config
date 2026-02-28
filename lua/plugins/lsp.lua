@@ -37,25 +37,6 @@ return {
       local lspconfig = require("lspconfig")
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-      local on_attach = function(_, bufnr)
-        local map = function(keys, fn, desc)
-          vim.keymap.set("n", keys, fn, { buffer = bufnr, desc = "LSP: " .. desc })
-        end
-
-        map("gd", vim.lsp.buf.definition, "Go to definition")
-        map("gD", vim.lsp.buf.declaration, "Go to declaration")
-        map("K", vim.lsp.buf.hover, "Hover docs")
-        map("gi", vim.lsp.buf.implementation, "Go to implementation")
-        map("gr", function() require("telescope.builtin").lsp_references() end, "References")
-        map("<leader>rn", vim.lsp.buf.rename, "Rename symbol")
-        map("<leader>ca", vim.lsp.buf.code_action, "Code action")
-        map("<leader>ls", function() require("telescope.builtin").lsp_document_symbols() end, "Document symbols")
-        map("<leader>lS", function() require("telescope.builtin").lsp_workspace_symbols() end, "Workspace symbols")
-        map("]d", vim.diagnostic.goto_next, "Next diagnostic")
-        map("[d", vim.diagnostic.goto_prev, "Prev diagnostic")
-        map("<leader>cd", vim.diagnostic.open_float, "Show diagnostic")
-      end
-
       vim.diagnostic.config({
         virtual_text = true,
         signs = true,
@@ -65,43 +46,42 @@ return {
         float = { border = "rounded", source = "always" },
       })
 
-      require("mason-lspconfig").setup({ handlers = {
-        -- Default handler for all servers
-        function(server_name)
-          lspconfig[server_name].setup({ capabilities = capabilities, on_attach = on_attach })
-        end,
+      require("mason-lspconfig").setup({
+        handlers = {
+          -- Default handler for all servers
+          function(server_name)
+            lspconfig[server_name].setup({ capabilities = capabilities })
+          end,
 
-        ["lua_ls"] = function()
-          lspconfig.lua_ls.setup({
-            capabilities = capabilities,
-            on_attach = on_attach,
-            settings = {
-              Lua = {
-                diagnostics = { globals = { "vim" } },
-                workspace = {
-                  library = vim.api.nvim_get_runtime_file("", true),
-                  checkThirdParty = false,
+          ["lua_ls"] = function()
+            lspconfig.lua_ls.setup({
+              capabilities = capabilities,
+              settings = {
+                Lua = {
+                  diagnostics = { globals = { "vim" } },
+                  workspace = {
+                    library = vim.api.nvim_get_runtime_file("", true),
+                    checkThirdParty = false,
+                  },
+                  telemetry = { enable = false },
                 },
-                telemetry = { enable = false },
               },
-            },
-          })
-        end,
+            })
+          end,
 
-        ["pyright"] = function()
-          lspconfig.pyright.setup({
-            capabilities = capabilities,
-            on_attach = on_attach,
-          })
-        end,
+          ["pyright"] = function()
+            lspconfig.pyright.setup({
+              capabilities = capabilities,
+            })
+          end,
 
-        ["ts_ls"] = function()
-          lspconfig.ts_ls.setup({
-            capabilities = capabilities,
-            on_attach = on_attach,
-          })
-        end,
-      } })
+          ["ts_ls"] = function()
+            lspconfig.ts_ls.setup({
+              capabilities = capabilities,
+            })
+          end,
+        }
+      })
     end,
   },
 

@@ -1,7 +1,36 @@
 return {
   "coder/claudecode.nvim",
   dependencies = { "folke/snacks.nvim" },
-  config = true,
+  opts = {
+    -- Focus Claude terminal automatically after sending code/selection
+    focus_after_send = true,
+
+    terminal = {
+      provider = "snacks",
+      snacks_win_opts = {
+        position = "right",
+        height = 0.3,
+        border = "rounded",
+        keys = {
+          -- From inside the Claude terminal, press <C-h> to hide it and return focus to nvim
+          focus_nvim = {
+            "<C-h>",
+            function(self)
+              self:hide()
+            end,
+            mode = "t",
+            desc = "Focus Neovim",
+          },
+        },
+      },
+    },
+
+    diff_opts = {
+      layout = "vertical",
+      open_in_new_tab = true,
+      on_new_file_reject = "close_window",
+    },
+  },
   keys = {
     { "<leader>a",  nil,                              desc = "AI/Claude Code" },
     { "<leader>ac", "<cmd>ClaudeCode<cr>",            desc = "Toggle Claude" },
