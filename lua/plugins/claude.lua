@@ -9,7 +9,7 @@ return {
       provider = "snacks",
       snacks_win_opts = {
         position = "right",
-        height = 0.3,
+        width = 0.4,
         border = "rounded",
         keys = {
           -- From inside the Claude terminal, press <C-h> to hide it and return focus to nvim
