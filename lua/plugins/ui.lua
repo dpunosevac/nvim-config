@@ -137,6 +137,10 @@ return {
       filters = { dotfiles = false },
       git = { enable = true, ignore = false },
       filesystem_watchers = { enable = true },
+      update_focused_file = {
+        enable = true,
+        update_root = false,
+      },
     },
   },
 
