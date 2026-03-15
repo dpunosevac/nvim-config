@@ -16,7 +16,7 @@ return {
           focus_nvim = {
             "<C-h>",
             function(self)
-              self:hide()
+              self:toggle()
             end,
             mode = "t",
             desc = "Focus Neovim",
