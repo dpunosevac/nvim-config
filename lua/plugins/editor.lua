@@ -8,18 +8,36 @@ return {
       "nvim-treesitter/nvim-treesitter-context",
     },
     config = function()
-      require("nvim-treesitter").setup({
-        ensure_installed = {
-          "lua", "vim", "vimdoc", "query",
-          "python",
-          "typescript", "javascript", "tsx", "html", "css",
-          "json", "yaml", "toml",
-          "markdown", "markdown_inline",
-          "bash",
-        },
-        auto_install = true,
-        highlight = { enable = true },
-        indent = { enable = true },
+      -- Ensure parser install dir is in runtimepath
+      local install_dir = vim.fs.joinpath(vim.fn.stdpath("data"), "site")
+      if not vim.tbl_contains(vim.opt.runtimepath:get(), install_dir) then
+        vim.opt.runtimepath:append(install_dir)
+      end
+
+      require("nvim-treesitter").setup()
+
+      -- Install parsers if missing
+      local ensure_installed = {
+        "lua", "vim", "vimdoc", "query",
+        "python",
+        "typescript", "javascript", "tsx", "html", "css",
+        "json", "yaml", "toml",
+        "markdown", "markdown_inline",
+        "bash",
+      }
+      local installed = require("nvim-treesitter.config").get_installed()
+      local to_install = vim.tbl_filter(function(lang)
+        return not vim.tbl_contains(installed, lang)
+      end, ensure_installed)
+      if #to_install > 0 then
+        require("nvim-treesitter").install(to_install)
+      end
+
+      -- Auto-start treesitter highlighting for buffers with a parser
+      vim.api.nvim_create_autocmd("FileType", {
+        callback = function()
+          pcall(vim.treesitter.start)
+        end,
       })
 
       require("treesitter-context").setup({
