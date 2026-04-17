@@ -8,11 +8,15 @@ return {
     terminal = {
       provider = "snacks",
       snacks_win_opts = {
-        position = "right",
-        width = 0.4,
-        border = "rounded",
+        position = "float",
+        width = 120,
+        height = 30,
+        border = "double",
+        backdrop = 90,
+        on_win = function()
+          vim.schedule(function() vim.cmd("redraw!") end)
+        end,
         keys = {
-          -- From inside the Claude terminal, press <C-h> to hide it and return focus to nvim
           focus_nvim = {
             "<C-h>",
             function(self)
@@ -25,10 +29,17 @@ return {
       },
     },
 
+    -- Diff Integration
     diff_opts = {
-      layout = "vertical",
-      open_in_new_tab = true,
-      on_new_file_reject = "close_window",
+      layout = "vertical",         -- "vertical" or "horizontal"
+      open_in_new_tab = false,
+      keep_terminal_focus = false, -- If true, moves focus back to terminal after diff opens
+      hide_terminal_in_new_tab = false,
+      -- on_new_file_reject = "keep_empty", -- "keep_empty" or "close_window"
+
+      -- Legacy aliases (still supported):
+      -- vertical_split = true,
+      -- open_in_current_tab = true,
     },
   },
   keys = {
