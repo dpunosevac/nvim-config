@@ -8,9 +8,29 @@ return {
       { "<leader>gg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
     },
   },
+  -- Diffview: merge conflict resolution & file history
+  -- Usage for conflicts: open a file with conflicts, run :DiffviewOpen
+  -- You'll see: LOCAL (yours) | BASE | REMOTE (theirs) + result at bottom
+  -- Edit the bottom panel to resolve, save, then :DiffviewClose
   {
-    "esmuellert/codediff.nvim",
-    cmd = "CodeDiff",
+    "sindrets/diffview.nvim",
+    cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFileHistory" },
+    keys = {
+      { "<leader>gd", "<cmd>DiffviewOpen<cr>",          desc = "Diffview open" },
+      { "<leader>gc", "<cmd>DiffviewClose<cr>",         desc = "Diffview close" },
+      { "<leader>gh", "<cmd>DiffviewFileHistory %<cr>", desc = "File history" },
+      { "<leader>gH", "<cmd>DiffviewFileHistory<cr>",   desc = "Branch history" },
+    },
+    opts = {
+      enhanced_diff_hl = true,
+      view = {
+        -- 3-way merge view: LOCAL | BASE | REMOTE on top, result at bottom
+        merge_tool = {
+          layout = "diff3_mixed",
+          disable_diagnostics = true,
+        },
+      },
+    },
   },
   -- Generate GitHub permalinks for selected code
   {
