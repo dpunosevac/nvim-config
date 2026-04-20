@@ -12,6 +12,16 @@ return {
     "esmuellert/codediff.nvim",
     cmd = "CodeDiff",
   },
+  -- Generate GitHub permalinks for selected code
+  {
+    "ruifm/gitlinker.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    keys = {
+      { "<leader>gl", function() require("gitlinker").get_buf_range_url("n") end, desc = "Git link (line)" },
+      { "<leader>gl", function() require("gitlinker").get_buf_range_url("v") end, mode = "v",              desc = "Git link (selection)" },
+    },
+    opts = {},
+  },
   -- Git signs in the gutter + hunk actions
   {
     "lewis6991/gitsigns.nvim",
