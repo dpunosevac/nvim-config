@@ -54,12 +54,13 @@ return {
       {
         "mfussenegger/nvim-dap-python",
         keys = {
-          { "<leader>dc", function() require("dap-python").test_class() end,  desc = "Debug: Python test class", ft = "python" },
+          { "<leader>dc", function() require("dap-python").test_class() end,  desc = "Debug: Python test class",  ft = "python" },
           { "<leader>dt", function() require("dap-python").test_method() end, desc = "Debug: Python test method", ft = "python" },
         },
         config = function()
           local python = vim.fn.exepath("python3")
           require("dap-python").setup(python)
+          require('dap-python').test_runner = 'pytest'
         end,
       },
 
@@ -76,16 +77,16 @@ return {
     },
 
     keys = {
-      { "<F1>", function() require("dap").continue() end,      desc = "Debug: Continue" },
-      { "<F2>", function() require("dap").step_into() end,     desc = "Debug: Step into" },
-      { "<F3>", function() require("dap").step_over() end,     desc = "Debug: Step over" },
-      { "<F4>", function() require("dap").step_out() end,      desc = "Debug: Step out" },
-      { "<F5>", function() require("dap").step_back() end,     desc = "Debug: Step back" },
-      { "<F6>", function() require("dap").run_to_cursor() end, desc = "Debug: Run to cursor" },
-      { "<F7>", function() require("dap").restart() end,       desc = "Debug: Restart" },
-      { "<leader>db", function() require("dap").toggle_breakpoint() end,    desc = "Debug: Toggle breakpoint" },
+      { "<F1>",       function() require("dap").continue() end,                    desc = "Debug: Continue" },
+      { "<F2>",       function() require("dap").step_into() end,                   desc = "Debug: Step into" },
+      { "<F3>",       function() require("dap").step_over() end,                   desc = "Debug: Step over" },
+      { "<F4>",       function() require("dap").step_out() end,                    desc = "Debug: Step out" },
+      { "<F5>",       function() require("dap").step_back() end,                   desc = "Debug: Step back" },
+      { "<F6>",       function() require("dap").run_to_cursor() end,               desc = "Debug: Run to cursor" },
+      { "<F7>",       function() require("dap").restart() end,                     desc = "Debug: Restart" },
+      { "<leader>db", function() require("dap").toggle_breakpoint() end,           desc = "Debug: Toggle breakpoint" },
       { "<leader>de", function() require("dapui").eval(nil, { enter = true }) end, desc = "Debug: Evaluate" },
-      { "<leader>dx", function() require("dapui").close() end, desc = "Debug: Close UI" },
+      { "<leader>dx", function() require("dapui").close() end,                     desc = "Debug: Close UI" },
     },
 
     config = function()
@@ -125,8 +126,10 @@ return {
 
       -- Breakpoint signs
       vim.fn.sign_define("DapBreakpoint", { text = "●", texthl = "DapBreakpoint", linehl = "", numhl = "" })
-      vim.fn.sign_define("DapBreakpointCondition", { text = "ﳁ", texthl = "DapBreakpointCondition", linehl = "", numhl = "" })
-      vim.fn.sign_define("DapBreakpointRejected", { text = "", texthl = "DapBreakpointRejected", linehl = "", numhl = "" })
+      vim.fn.sign_define("DapBreakpointCondition",
+        { text = "ﳁ", texthl = "DapBreakpointCondition", linehl = "", numhl = "" })
+      vim.fn.sign_define("DapBreakpointRejected",
+        { text = "", texthl = "DapBreakpointRejected", linehl = "", numhl = "" })
       vim.fn.sign_define("DapLogPoint", { text = "", texthl = "DapLogPoint", linehl = "", numhl = "" })
       vim.fn.sign_define("DapStopped", { text = "", texthl = "DapStopped", linehl = "DapStoppedLine", numhl = "" })
 
